@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>札记</title>
+    </head>
+
+    <body>
+        <h1>读书的点滴记录</h1>
+
+        {% if categories %}
+            <ul>
+                {% for category in categories %}
+                <li><a href="/zhaji/category/{{ category.slug }}">{{ category.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>现在还没有分类</strong>
+        {% endif %}
+
+        <a href="/zhaji/about/">关于</a>
+    </body>
+</html>

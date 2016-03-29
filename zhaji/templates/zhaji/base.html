@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>札记 - {% block title %}读书的点滴记录!{% endblock %}</title>
+    </head>
+
+    <body>
+        <div>
+            {% block body_block %}{% endblock %}
+        </div>
+
+        <hr />
+
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'auth_logout' %}?next=/zhaji/">登出</a></li>
+                <li><a href="{% url 'add_category' %}">增加类别</a></li>
+            {% else %}
+                <li><a href="{% url 'registration_register' %}">注册</a></li>
+                <li><a href="{% url 'auth_login' %}">登录</a></li>
+            {% endif %}
+
+                <li><a href="{% url 'about' %}">关于</a></li>
+            </ul>
+        </div>
+    </body>
+</html>

@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>札记</title>
-    </head>
+{% extends 'zhaji/base.html' %}
 
-    <body>
-        <h1>读书的点滴记录</h1>
+{% load staticfiles %}
 
-        {% if categories %}
-            <ul>
-                {% for category in categories %}
-                <li><a href="/zhaji/category/{{ category.slug }}">{{ category.name }}</a></li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <strong>现在还没有分类</strong>
-        {% endif %}
 
-        <a href="/zhaji/add_category/">增加一个分类</a>
-        <a href="/zhaji/about/">关于</a>
-    </body>
-</html>
+{% block body_block %}
+    <h1>读书的点滴记录</h1>
+
+    {% if categories %}
+        <ul>
+            {% for category in categories %}
+            <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <strong>现在还没有分类</strong>
+    {% endif %}
+
+    <a href="{% url 'add_category' %}">增加分类</a>
+    <a href="{% url 'about' %}">关于</a>
+{% endblock %}

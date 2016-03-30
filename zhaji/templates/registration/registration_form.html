@@ -1,12 +1,14 @@
 {% extends "zhaji/base.html" %}
 
+{% load bootstrap3 %}
 
 {% block body_block %}
-<h1>在此注册</h1>
+
         <form method="post" action=".">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <h1 class="form-signin-heading">在此注册</h1>
+                {% bootstrap_form form %}
 
-                <input type="submit" value="提交" />
+                <input class="btn btn-primary" type="submit" value="提交" />
         </form>
 {% endblock %}

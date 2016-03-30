@@ -2,20 +2,51 @@
 
 {% load staticfiles %}
 
+{% block title %}首页{% endblock %}
 
 {% block body_block %}
+  <div class="page-header">
+  {% if user.is_authenticated %}
+    <h1>{{ user.username }} 读书的点滴记录</h1>
+  {% else %}
     <h1>读书的点滴记录</h1>
+  {% endif %}
+  <div>
+  <div class="row placeholders">
+    <div class="col-xs-12 col-sm-6 placeholder">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">类别</h4>
+        </div>
+      </div>
+      {% if categories %}
+          <ul class="list-group">
+              {% for category in categories %}
+              <li class="list-group-item"><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
+              {% endfor %}
+          </ul>
+      {% else %}
+          <strong>现在还没有分类</strong>
+      {% endif %}
+    </div>
+    <div class="col-xs-12 col-sm-6 placeholder">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h4 class="panel-title">页面</h4>
+        </div>
+      </div>
 
-    {% if categories %}
-        <ul>
-            {% for category in categories %}
-            <li><a href="{% url 'category' category.slug %}">{{ category.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <strong>现在还没有分类</strong>
-    {% endif %}
+      {% if pages %}
+          <ul class="list-group">
+              {% for page in pages %}
+               <li class="list-group-item"><a href="{{page.url}}">{{ page.title }}</a></li>
+              {% endfor %}
+          </ul>
+      {% else %}
+          <strong>现在还没有页面</strong>
+      {% endif %}
+    </div>
+  </div>
 
     <a href="{% url 'add_category' %}">增加分类</a>
-    <a href="{% url 'about' %}">关于</a>
 {% endblock %}

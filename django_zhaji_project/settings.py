@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'zhaji.apps.ZhajiConfig',
     'registration',
+    'bootstrap3',
 ]
 
 MIDDLEWARE_CLASSES = [

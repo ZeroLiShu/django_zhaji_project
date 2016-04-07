@@ -20,11 +20,20 @@ class Category(models.Model):
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name
 
-class Page(models.Model):
+class Book(models.Model):
     category = models.ForeignKey(Category, null=True)
-    title = models.CharField(max_length=128)
+    name = models.CharField(max_length=128, unique=True)
+    isbn = models.IntegerField(default=0)
     url = models.URLField()
     views = models.IntegerField(default=0)
 
     def __unicode__(self):      #For Python 2, use __str__ on Python 3
+        return self.name
+
+class Note(models.Model):
+    book = models.ForeignKey(Book, null=True)
+    title = models.CharField(max_length=128)
+    content = models.TextField(blank=True)
+
+    def __unicode__(self):
         return self.title

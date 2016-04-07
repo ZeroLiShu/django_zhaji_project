@@ -37,7 +37,6 @@
                   <li><a href="{% url 'index' %}">主页</a></li>
                   {% if user.is_authenticated %}
                       <li><a href="{% url 'auth_logout' %}?next=/zhaji/">登出</a></li>
-                      <li><a href="{% url 'add_category' %}">增加类别</a></li>
                   {% else %}
                       <li><a href="{% url 'registration_register' %}">注册</a></li>
                       <li><a href="{% url 'auth_login' %}">登录</a></li>

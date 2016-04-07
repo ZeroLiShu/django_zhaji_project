@@ -7,21 +7,18 @@
 {% block body_block %}
     <h1>{{ category_name }}</h1>
     {% if category %}
-        {% if pages %}
+        {% if books %}
         <ul>
-                {% for page in pages %}
-                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% for book in books %}
+                <li><a href="{{ book.url }}">{{ book.name }}</a></li>
                 {% endfor %}
                 </ul>
         {% else %}
                 <strong>类别中目前没有页面.</strong>
-                {% endif %}
+        {% endif %}
 
-        {% if user.is_authenticated %}
-                <a href="{% url 'add_page' category.slug %}">增加页面</a>
-                {% endif %}
-        {% else %}
-                 此特定类别 {{ category_name }} 不存在!
+    {% else %}
+        此特定类别 {{ category_name }} 不存在!
     {% endif %}
 
 {% endblock %}

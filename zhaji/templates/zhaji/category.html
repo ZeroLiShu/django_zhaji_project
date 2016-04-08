@@ -8,17 +8,17 @@
     <h1>{{ category_name }}</h1>
     {% if category %}
         {% if books %}
-        <ul>
+          <ul>
                 {% for book in books %}
                 <li><a href="{{ book.url }}">{{ book.name }}</a></li>
                 {% endfor %}
-                </ul>
+          </ul>
         {% else %}
-                <strong>类别中目前没有页面.</strong>
+                <strong>类别中目前没有书籍</strong>
         {% endif %}
 
     {% else %}
-        此特定类别 {{ category_name }} 不存在!
+        此特定类别 {{ category_name }} 不存在
     {% endif %}
 
 {% endblock %}

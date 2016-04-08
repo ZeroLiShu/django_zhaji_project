@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from zhaji.models import Category, Book
+from zhaji.models import Category, Book, Note
 #from zhaji.forms import CategoryForm, PageForm
 
 def about(request):
@@ -48,6 +48,32 @@ def category(request, category_name_slug):
 
     # Go render the response and return it to the client.
     return render(request, 'zhaji/category.html', context_dict)
+
+def book(request, book_isbn):
+    context_dict = {}
+
+    try:
+        book = Book.objects.get(isbn=book_isbn)
+        context_dict['book'] = book
+
+        notes = Note.objects.filter(book=book)
+        context_dict['notes'] = notes
+    except Book.DoesNotExist:
+        pass
+
+    return render(request, 'zhaji/book.html', context_dict)
+
+def note(request, note_pk):
+    context_dict = {}
+
+    try:
+        note = Note.objects.get(pk=note_pk)
+        context_dict['note'] = note
+
+    except Book.DoesNotExist:
+        pass
+
+    return render(request, 'zhaji/note.html', context_dict)
 
 #def add_category(request):
     # A HTTP POST?

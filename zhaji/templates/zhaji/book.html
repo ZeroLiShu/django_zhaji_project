@@ -1,0 +1,24 @@
+{% extends 'zhaji/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}{{ book.name }}{% endblock %}
+
+{% block body_block %}
+    <h1>{{ book.name }}</h1>
+    {% if book %}
+        {% if notes %}
+          <ul>
+                {% for note in notes %}
+                <li><a href="{% url note note.pk %}">{{ note.title }}</a></li>
+                {% endfor %}
+          </ul>
+        {% else %}
+                <strong>书籍中目前没有笔记</strong>
+        {% endif %}
+
+    {% else %}
+        此特定书籍 {{ book.name }} 不存在
+    {% endif %}
+
+{% endblock %}
